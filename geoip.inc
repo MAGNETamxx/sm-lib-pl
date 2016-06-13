@@ -9,7 +9,7 @@
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, version 3.0, as published by the
  * Free Software Foundation.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -38,34 +38,34 @@
 #include <core>
 
 /**
- * @section IP addresses can contain ports, the ports will be stripped out.
+ * @section Adress IP może zawierać port, będzie on wycięty.
  */
 
 /**
- * Gets the two character country code from an IP address. (US, CA, etc)
+ * Pobiera 2-wu znakowy kod kraju z adressu IP. (np. US, CA, PL, itp.)
  *
- * @param ip			Ip to determine the country code.
- * @param ccode			Destination string buffer to store the code.
- * @return				True on success, false if no country found.
+ * @param ip			Adress IP.
+ * @param ccode			Buffor do przechowania kodu.
+ * @return				True jeśli zakończy się sukcessem, false jeśli nie może znależć kraju.
  */
 native bool GeoipCode2(const char[] ip, char ccode[3]);
 
 /**
- * Gets the three character country code from an IP address. (USA, CAN, etc)
+ * Pobiera 3-rj znakowy kod kraju z adressu IP. (np. USA, CAN, POL, itp.)
  *
- * @param ip			Ip to determine the country code.
- * @param ccode			Destination string buffer to store the code.
- * @return				True on success, false if no country found.
+ * @param ip			Adress IP.
+ * @param ccode			Buffor do przechowania kodu.
+ * @return				True jeśli zakończy się sukcessem, false jeśli nie może znależć kraju.
  */
 native bool GeoipCode3(const char[] ip, char ccode[4]);
 
 /**
- * Gets the full country name. (max length of output string is 45)
+ * Pobiera pełną nazwę kraju z adressu IP (Maksymalna długość nazwy kraju wynosi 45).
  *
- * @param ip			Ip to determine the country code.
- * @param name			Destination string buffer to store the country name.
- * @param maxlength			Maximum length of output string buffer.
- * @return				True on success, false if no country found.
+ * @param ip			Adress IP.
+ * @param name			Buffor do przechowania kodu.
+ * @param maxlength			Rozmiar buffora.
+ * @return				True jeśli zakończy się sukcessem, false jeśli nie może znależć kraju.
  */
 native bool GeoipCountry(const char[] ip, char[] name, int maxlength);
 
@@ -76,7 +76,7 @@ native bool GeoipCountry(const char[] ip, char[] name, int maxlength);
 /**
  * Do not edit below this line!
  */
-public Extension __ext_geoip = 
+public Extension __ext_geoip =
 {
 	name = "GeoIP",
 	file = "geoip.ext",
