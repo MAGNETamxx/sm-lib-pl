@@ -9,7 +9,7 @@
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, version 3.0, as published by the
  * Free Software Foundation.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -29,7 +29,7 @@
  *
  * Version: $Id$
  */
- 
+
 #if defined _adminmenu_included
  #endinput
 #endif
@@ -51,73 +51,69 @@
  #undef TEMP_REQUIRE_EXTENSIONS
 #endif
 
-/** Category for player commands. */
+/** Kategoria dla komend gracza. */
 #define ADMINMENU_PLAYERCOMMANDS		"PlayerCommands"
-/** Category for server commands. */
+/** Kategoria dla komend server'a. */
 #define ADMINMENU_SERVERCOMMANDS		"ServerCommands"
-/** Category for voting commands. */
+/** Kategoria na komendy głosowania. */
 #define ADMINMENU_VOTINGCOMMANDS		"VotingCommands"
 
 /**
- * Called when the admin menu is created and 3rd party plugins can grab 
- * the Handle or add categories.
- * 
- * @param topmenu		Handle to the admin menu's TopMenu.
+ * Wywoływane kiedy menu admina jest tworzone, pluginy 3-cie mogą przechwycić Handle lub dodać kategorie.
+ *
+ * @param topmenu		Handle do TopMenu menu admina.
  */
 forward void OnAdminMenuCreated(Handle topmenu);
 
 /**
- * Called when the admin menu is ready to have items added.
- * 
- * @param topmenu		Handle to the admin menu's TopMenu.
+ * Wywoływane kiedy menu admina jest gotowe dodania itemów.
+ *
+ * @param topmenu		Handle do TopMenu menu admina.
  */
 forward void OnAdminMenuReady(Handle topmenu);
 
 /**
- * Retrieves the Handle to the admin top menu.
+ * Pobiera Handle do TopMenu menu admina.
  *
- * @return				Handle to the admin menu's TopMenu,
- *						or INVALID_HANDLE if not created yet.
+ * @return				Handle do TopMenu menu admina lub INVALID_HANDLE jeśli jeszcze nie jest stworzone.
  */
 native TopMenu GetAdminTopMenu();
 
 /**
- * Adds targets to an admin menu.
+ * Dodaje cel do menu admina.
  *
- * Each client is displayed as: name (userid)
- * Each item contains the userid as a string for its info.
+ * Każdy klient jest wyświetlany jako: nick (UserID). Każdy item przechowuje UserID jako ciąg znaków w info.
  *
  * @param menu			Menu Handle.
- * @param source_client	Source client, or 0 to ignore immunity.
- * @param in_game_only	True to only select in-game players.
- * @param alive_only 	True to only select alive players.
- * @return				Number of clients added.
+ * @param source_client	Source client, or 0 to ignore immunity. (To do przetłumaczenia póżniej, moje tłumaczenie się nie klej)
+ * @param in_game_only	True aby można było wybrać tylko klientów w grze.
+ * @param alive_only 	True aby można było wybrać tylko żywych klientów.
+ * @return				Ilość dodanych klientów.
  */
-native int AddTargetsToMenu(Handle menu, 
-						int source_client, 
-						bool in_game_only=true, 
+native int AddTargetsToMenu(Handle menu,
+						int source_client,
+						bool in_game_only=true,
 						bool alive_only=false);
 
 /**
- * Adds targets to an admin menu.
+ * Dodaje cel do menu admina.
  *
- * Each client is displayed as: name (userid)
- * Each item contains the userid as a string for its info.
+ * Każdy klient jest wyświetlany jako: nick (UserID). Każdy item przechowuje UserID jako ciąg znaków w info.
  *
  * @param menu			Menu Handle.
- * @param source_client	Source client, or 0 to ignore immunity.
- * @param flags			COMMAND_FILTER flags from commandfilters.inc.
- * @return				Number of clients added.
+ * @param source_client	Source client, or 0 to ignore immunity. (To do przetłumaczenia póżniej, moje tłumaczenie się nie klej)
+ * @param flags			Flagi COMMAND_FILTER z commandfilters.inc.
+ * @return				Ilość dodanych klientów.
  */
 native int AddTargetsToMenu2(Handle menu, int source_client, int flags);
 
 /**
- * Re-displays the admin menu to a client after selecting an item.
+ * Otwiera ponownie menu admina klientowi po wybraniu itemu pod warunkiem że Handle jest prawidłowy.
  * Auto-aborts if the Handle is invalid.
  *
  * @param topmenu		TopMenu Handle.
- * @param client		Client index.
- * @return				True on success, false on failure.
+ * @param client		ID klienta.
+ * @return				True jeśli powiodło się, false w przeciwnym wypadku.
  */
 stock bool RedisplayAdminMenu(Handle topmenu, int client)
 {
@@ -131,7 +127,7 @@ stock bool RedisplayAdminMenu(Handle topmenu, int client)
 
 /* DO NOT EDIT BELOW THIS LINE */
 
-public SharedPlugin __pl_adminmenu = 
+public SharedPlugin __pl_adminmenu =
 {
 	name = "adminmenu",
 	file = "adminmenu.smx",
