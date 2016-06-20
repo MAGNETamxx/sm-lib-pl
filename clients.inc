@@ -36,48 +36,47 @@
 #define _clients_included
 
 /**
- * Network flow directions.
+ * Kierunek przepływu danych
  */
 enum NetFlow
 {
-	NetFlow_Outgoing = 0,	/**< Outgoing traffic */
-	NetFlow_Incoming,		/**< Incoming traffic */
-	NetFlow_Both,			/**< Both values added together */
+	NetFlow_Outgoing = 0,	/**< Dane wychodzące */
+	NetFlow_Incoming,		/**< Dane przychodzące */
+	NetFlow_Both,			/**< Obydwie wartości dodane razem */
 };
 
 /**
- * Auth string types.
+ * Rodzaje autoryzacji za pomocą stringów.
  *
- * Note that for the Steam2 and Steam3 types, the following ids are
- * also valid values:
- * "STEAM_ID_PENDING" - Authentication is pending.
- * "STEAM_ID_LAN" - Authentication is disabled because of being on a LAN server.
- * "BOT" - The client is a bot.
+ * Zauważ, że dla Steam2 i Steam3 poprawne są następujące wartości:
+ * "STEAM_ID_PENDING" - Identyfikacja jest weryfikowana.
+ * "STEAM_ID_LAN" - Identyfikacja jest zablokowana przez fakt bycia na serwerze LAN.
+ * "BOT" - Klient jest botem.
  */
 enum AuthIdType
 {
-	AuthId_Engine = 0,     /**< The game-specific auth string as returned from the engine */
+	AuthId_Engine = 0,     /**< Zwracany przez silnik identyfikacyjny ciąg znaków o różnych wartościach w zależności od gry */
 	
-	// The following are only available on games that support Steam authentication.
-	AuthId_Steam2,         /**< Steam2 rendered format, ex "STEAM_1:1:4153990" */
-	AuthId_Steam3,         /**< Steam3 rendered format, ex "[U:1:8307981]" */
-	AuthId_SteamID64,      /**< A SteamID64 (uint64) as a String, ex "76561197968573709" */
+	// Podane przykłady są dostępne jedynie dla gier wspierających autoryzację Steam.
+	AuthId_Steam2,         /**< wyrenderowany format Steam2. Przykład: "STEAM_1:1:4153990" */
+	AuthId_Steam3,         /**< wyrenderowany format Steam3. Przykład: "[U:1:8307981]" */
+	AuthId_SteamID64,      /**< SteamID64 (uint64), będącym ciągiem znaków. Przykład: "76561197968573709" */
 };
 
 /**
- * MAXPLAYERS is not the same as MaxClients.
+ * MAXPLAYERS to nie co samo co MaxClients.
  * MAXPLAYERS is a hardcoded value as an upper limit.  MaxClients changes based on the server.
  */
 
-#define MAXPLAYERS		65	/**< Maximum number of players SourceMod supports */
-#define MAX_NAME_LENGTH 32	/**< Maximum buffer required to store a client name */
+#define MAXPLAYERS		65	/**< Maksymalna liczba graczy obsługiwana przez SourceModa */
+#define MAX_NAME_LENGTH 32	/**< Maksymalny bufor pamięci wymagany aby przechować nick */
 
-public const int MaxClients;	/**< Maximum number of players the server supports (dynamic) */
+public const int MaxClients;	/**< Maksymalna liczba graczy obsługiwana przez serwer (dynamicznie) */
 
 /**
- * Called on client connection.  If you return true, the client will be allowed in the server.
- * If you return false (or return nothing), the client will be rejected.  If the client is 
- * rejected by this forward or any other, OnClientDisconnect will not be called.
+ * Wywoływany podczas łączenia się gracza z serwerem.  Jeśli zwróci true, gracz zostanie wpuszczony na serwer.
+ * W przypadku zwrócenia false (lub niczego), klient zostanie odrzucony.  W przypadku odrzucenia przez ten, bądź inny forward, 
+ *  OnClientDisconnect nie zostanie wywołane.
  *
  * Note: Do not write to rejectmsg if you plan on returning true.  If multiple plugins write
  * to the string buffer, it is not defined which plugin's string will be shown to the client,
